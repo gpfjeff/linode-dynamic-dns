@@ -1,2 +1,29 @@
-# linode-dynamic-dns
-A .NET 2.0 app for using Linode DNS servers as a dynamic DNS system
+# Linode Dynamic DNS Updater
+The Linode Dynamic DNS Updater is a small .NET 2.0 application that allows [Linode](https://www.linode.com) customers to use the company's DNS services as a sort of "dynamic DNS". The Updater uses the [Linode API](https://www.linode.com/api) to update specified domain names with the calling machine's outward-facing IP address. Thus, you can map a domain to a specific machine, even if that machine moves from place to place or is behind a cable or DNS modem that frequently changes IP addresses.
+
+## A Quick and Dirty User Guide
+
+1. If you're not already a Linode customer, [create an account](https://manager.linode.com/session/signup).
+2. Log into the [Linode Manager](https://manager.linode.com/) and navigate to the DNS Manager.
+3. Select the domain zone you want to work with, or set up a new zone. The Dynamic DNS Updater only works on **master** domain zones, i.e. domains where you've set up Linode to be the primary authoritative source. You cannot use the Updater on a slave zone, because the slave's master will overwrite your updates! (How to buy a domain name and associate it with Linode's DNS is considered out of the scope of this quick guide.)
+4. Select the subdomain(s) you wish to use for your dynamic address. You can select as many domains as you like, just so long as you have a valid A (for IPv4) and/or AAAA (for IPv6) record in place. (The initial IP specified for these records are not important.)
+5. Set the TTL ("time to live") record for your dynamic domains to something relatively small; I generally recommend an hour, but you can extend this if you don't anticipate your IP changing as frequently. Whatever you set here should probably match your update frequency, which we'll set below.
+6. If you don't already have one, use the My Profile section of the Linode Manager to set up a Linode API key. For extra security, you should probably create a dedicated key for each machine you plan to install the Updater on, just in case the machine becomes compromised and you need to revoke the key. (Then the other keys will continue to function.)
+7. If you don't already have it, download and install [Microsoft .NET](https://msdn.microsoft.com/en-us/vstudio/aa496123) if you're planning to use Windows, or [Mono](http://www.mono-project.com/) for other platforms. The Updater is written for .NET 2.0, but Microsoft doesn't offer that version of the runtime anymore; download .NET 3.5 if you're using Microsoft's version.
+8. Download (and if necessary, build) the Dynamic DNS Updater. In the end, you'll only need the final EXE. Decide upon a semi-permanent location for it to live, then run it.
+9. Enter your API key in the API Key text box. Click the Test button to verify that it works.
+10. Click the Add button. This brings up a dialog box filled with your top level, master domain zones. Click on a zone to fetch all of the A and AAAA subdomain records. Find the first domain you want to associate with your dynamic IP, then click Add.
+11. Repeat the previous step for each additional domain you want associated with your dynamic IP. **Be careful!** Don't accidentally pick your production website domain or company's master database server! If you pick the wrong domain and screw up the apps running on your Linodes, it's your fault, not mine. :D Also be aware of the difference between IPv4 "A" records and IPv6 "AAAA" records; if your outward-facing IP is IPv4, associating it with an "AAAA" record probably won't work.
+12. Once you've selected all your domains, click the Update Now button. If you get a success message, congratulations! Your domains are now pointing to your dynamic IP! (Well, it can take up to 15 minutes for Linode's DNS to reflect the change, but it will get there... eventually.) If you don't get a success message, look for any error messages and try to correct the problem if you can.
+13. Your domain(s) now point to your dynamic IP, but they won't stay in sync if your IP changes. You'll need to run the app periodically in "batch" mode to keep your IP up to date. Close the UI by clicking Close (or the X in the corner, or Alt+F4... you know the drill). Then...
+  * Under Windows:
+    1. Open the Control Panel, choose Administrative Tools, then Task Scheduler. **Note:** If the login you use does not have administrative privileges, you may need to run Task Scheduler as an admin to get this to work.
+    2. Set up a task by choosing Create Task. While many of the settings are up to you, make sure you:
+      * Set the job to run under the same user account as the one you ran the setup UI under (otherwise it won't see your settings);
+      * Choose *Run whether user is logged on or not* to run the job when you're not logged in;
+      * Under Triggers, choose *On a Schedule,* then *Repeat Task Every...* Set the frequency to match the TTL you set for your domains above. Then, *For a Duration Of* should be set to *Indefinitely.*
+      * Under Actions, in *Program/Script* specify the full path to where you stored the Updater EXE, and specify "-run" under *Add Arguments.*
+  * On other platforms:
+    1. How you set up a scheduled task varies from platform to platform. Many UNIX-like systems use [cron](https://en.wikipedia.org/wiki/Cron), or a clone of it. Setting up a cron is beyond the scope of this quick guide; however, the linked-to Wikipedia page should give you a decent start. Make sure to give the cron the full path to the Mono executable, as well as the full path to the Updater EXE, and include the "-run" command-line flag. Also schedule the job to run as the same user account that you used to run the UI, since that determines where the "registry" file with your settings lives. Set your job to run at a comparable frequency to the TTL you set for your domains above.
+14. Make sure to test your scheduled task to make sure it works. If it does, great! If it doesn't... well, walk back through this process and see if you can find what went wrong.
+15. If you need to edit your list of domains or update your API key, simply run the EXE again without the "-run" argument to bring back up the GUI. Make your changes and they will be immediately saved.
