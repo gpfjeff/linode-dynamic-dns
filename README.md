@@ -40,3 +40,15 @@ Binaries are forthcoming; honest. As per all my projects, I'll make sure to incl
       * Set your job to run at a comparable frequency to the TTL you set for your domains above.
 14. Make sure to test your scheduled task to make sure it works. If it does, great! If it doesn't... well, walk back through this process and see if you can find what went wrong.
 15. If you need to edit your list of domains or update your API key, simply run the EXE again without the "-run" argument to bring back up the GUI. Make your changes and they will be immediately saved. When the scheduled task runs again, it will use the new settings.
+
+## History
+
+In the past, I used a "professional" dynamic DNS service which I paid a signficant amount for every year. Once I learned about the Linode API and its ability to trivially act in the same capacity, I quickly abandoned the paid service, especially since I could get the same functionality for "free" with the service I was already getting from Linode.
+
+There are a number of scripts and applets for creating a "Linode dynamic DNS" available. Many of these assume Linux scripting capabilities, which is understandable given Linode's Linux-centric services. However, many of the machines that I wanted to provide dynamic DNS capabilites to are Windows machines, and not all of them have Python or Perl installed. It made sense for me to come up with a Windows-centric solution and, if it just so happened to work on other platforms under a compatibility layer like Mono, all the better.
+
+This is actually the second stab I've made at a Linode dynamic DNS updater. The first version was not very configurable, having my API key hard-coded into the source and requiring manual editing of the registry to set up. I wanted to make this more flexible and extensible, so I rewrote it from the ground up.
+
+## Kudos
+
+If you find this app useful, great! I'm glad you like it. I'm not asking for anything in return, but if you suddenly feel the urge to display your gratitude somehow, please swing by my [primary website](http://www.gpf-comics.com/). There's lots of fun things to read over there, and I could use the ad revenue. :) If you're looking for more tangible ways to show appreciation, you can drop some virtual coins in my [tip jar](http://www.gpf-comics.com/tips.php) or, if you *really* like what you see, please [honor me with a subscription to my site](http://www.gpf-comics.com/premium/).
