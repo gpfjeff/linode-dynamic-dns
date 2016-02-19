@@ -12,6 +12,8 @@ Download version 1.0 of the Linode Dynamic DNS Updater:
 * SHA-256: 73f8625b198e6082f731d9de4e9395539023ddfd0dbb337e81c51067b40c4acc
 * SHA-512: f8b3928ce647f0da644bd35fa932bbf48940c91ec089666e618a882937ca05529d2f28a22b45b91fa4bfaf40ae2e0bd6a3828ff4c9446ab69a9b64c560975729
 
+Of course, if you prefer not to trust pre-built binaries, that's fine; just pull down the source and build it yourself. The Linode Dynamic DNS Updater was built using Microsoft Visual Studio 2012.
+
 ## A Quick and Dirty User Guide
 
 1. If you're not already a Linode customer, [create an account](https://manager.linode.com/session/signup).
