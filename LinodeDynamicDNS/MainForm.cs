@@ -24,7 +24,7 @@
  * 
  * There's also the prerequisite About, Help, and Close buttons.  Huzzah.
  * 
- * This program is Copyright 2016, Jeffrey T. Darlington.
+ * This program is Copyright 2017, Jeffrey T. Darlington.
  * E-mail:  jeff@gpf-comics.com
  * Web:     https://github.com/gpfjeff/linode-dynamic-dns
  * 
@@ -91,7 +91,7 @@ namespace com.gpfcomics.LinodeDynamicDNS
         /// The expected result from the Linode API for a successful update.  The "{0}" token should be replaced with the
         /// resource ID of the domain being updated.
         /// </summary>
-        private string EXPECTED_RESPONSE = "{\"ERRORARRAY\":[],\"DATA\":{\"ResourceID\":{0}},\"ACTION\":\"domain.resource.update\"}";
+        private string EXPECTED_RESPONSE = "{\"ACTION\":\"domain.resource.update\",\"DATA\":{\"ResourceID\":{0}},\"ERRORARRAY\":[]}";
 
         /// <summary>
         /// Our main constructor
@@ -411,8 +411,8 @@ namespace com.gpfcomics.LinodeDynamicDNS
                 // If we get back the expected response, then we'll know the API key the user entered is valid.  Otherwise, it's not.
                 // Show the appropriate message.  Also note that if the API isn't valid, we'll disable the Add button; we don't want
                 // the user trying add domains to the list if we don't have a valid API key.
-                if (!String.IsNullOrEmpty(response) && response.CompareTo("{\"ERRORARRAY\":[],\"DATA\":{\"foo\":\"bar\"},\"ACTION\":\"test.echo\"}") == 0)
-                {
+                if (!String.IsNullOrEmpty(response) && response.CompareTo("{\"ACTION\":\"test.echo\",\"DATA\":{\"foo\":\"bar\"},\"ERRORARRAY\":[]}") == 0)
+                    {
                     MessageBox.Show("Your API key appears to be valid!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     btnAdd.Enabled = true;
                     // We also need to potentially enable the Update button... assuming there's some domains in our list box:

@@ -25,7 +25,7 @@
  * I also can't be held responsible for anyone who "accidentally" overwrites their main webserver's
  * domain with their home cable modem's IP.  It's up to *YOU* to pick the right domain! ;)
  * 
- * This program is Copyright 2016, Jeffrey T. Darlington.
+ * This program is Copyright 2017, Jeffrey T. Darlington.
  * E-mail:  jeff@gpf-comics.com
  * Web:     https://github.com/gpfjeff/linode-dynamic-dns
  * 
@@ -156,13 +156,13 @@ namespace com.gpfcomics.LinodeDynamicDNS
                 webClient = new WebClient();
                 string response = webClient.DownloadString(domainListURL);
                 // If we got anything useful:
-                if (response.StartsWith("{\"ERRORARRAY\":[],"))
+                if (response.EndsWith(",\"ERRORARRAY\":[]}"))
                 {
                     // To more easily sort things, we'll store our parsed list in a Hashtable.  Initialize it now:
                     Hashtable domains = new Hashtable();
                     // Strip off the "header" and "footer" from the result, then split it using the first record splitter.  This
                     // should give us a string array where each entry is a full top-level domain record.
-                    response = response.Replace("{\"ERRORARRAY\":[],\"DATA\":[{", "").Replace("}],\"ACTION\":\"domain.list\"}", "");
+                    response = response.Replace("{\"ACTION\":\"domain.list\",\"DATA\":[{", "").Replace("}],\"ERRORARRAY\":[]}", "");
                     string[] domainList = response.Split(domainListSplitter, StringSplitOptions.RemoveEmptyEntries);
                     // Loop through each domain record:
                     foreach (string domainEntry in domainList)
@@ -267,12 +267,12 @@ namespace com.gpfcomics.LinodeDynamicDNS
                         webClient = new WebClient();
                         string response = webClient.DownloadString(domainListURL);
                         // If it looks like we got a valid response, proceed:
-                        if (response.StartsWith("{\"ERRORARRAY\":[],"))
+                        if (response.EndsWith(",\"ERRORARRAY\":[]}"))
                         {
                             // Again, declare a Hashtable to hold our results, chop off the "header" and "footer", then split the domain
                             // records apart and loop through them:
                             Hashtable domains = new Hashtable();
-                            response = response.Replace("{\"ERRORARRAY\":[],\"DATA\":[{", "").Replace("}],\"ACTION\":\"domain.resource.list\"}", "");
+                            response = response.Replace("{\"ACTION\":\"domain.list\",\"DATA\":[{", "").Replace("}],\"ERRORARRAY\":[]}", "");
                             string[] domainList = response.Split(domainListSplitter, StringSplitOptions.RemoveEmptyEntries);
                             foreach (string domainEntry in domainList)
                             {
