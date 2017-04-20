@@ -5,12 +5,12 @@ The Linode Dynamic DNS Updater is free software and is released under the [GNU G
 
 ## Downloadable Binaries
 
-Download version 1.0 of the Linode Dynamic DNS Updater:
-* [LinodeDynamicDNS.exe](https://github.com/gpfjeff/linode-dynamic-dns/releases/download/v1.0/LinodeDynamicDNS.exe) (28.5k)
-* [GnuPG Signature](https://github.com/gpfjeff/linode-dynamic-dns/releases/download/v1.0/LinodeDynamicDNS.exe.sig) / [Signing Key](https://www.gpf-comics.com/gnupg.php)
-* SHA-1: 1c49a570e72c2fac17e254f46c7cfc6d681605ff
-* SHA-256: 73f8625b198e6082f731d9de4e9395539023ddfd0dbb337e81c51067b40c4acc
-* SHA-512: f8b3928ce647f0da644bd35fa932bbf48940c91ec089666e618a882937ca05529d2f28a22b45b91fa4bfaf40ae2e0bd6a3828ff4c9446ab69a9b64c560975729
+Download version 1.1 of the Linode Dynamic DNS Updater:
+* [LinodeDynamicDNS.zip](https://github.com/gpfjeff/linode-dynamic-dns/releases/download/v1.1/LinodeDynamicDNS.zip) (11.2k)
+* [GnuPG Signature](https://github.com/gpfjeff/linode-dynamic-dns/releases/download/v1.1/LinodeDynamicDNS.zip.sig) / [Signing Key](https://www.gpf-comics.com/gnupg.php)
+* SHA-1: 7b2ff941e37c9cb4eb989edf1db1467e60a87e02
+* SHA-256: bdc1f85c700e3a6b393fcc32d30c0f6d66da2290bada107d894a0b4c3c92f96c
+* SHA-512: fa7427eeec14a74369431553075005d9ae87da2cf97e2e9b4e30c22ab49b603be0298acd445dcdafe0f80b7402a90523409695707b1ccf2301843a10a1a3fb68
 
 Of course, if you prefer not to trust pre-built binaries, that's fine; just pull down the source and build it yourself. The Linode Dynamic DNS Updater was built using Microsoft Visual Studio 2012.
 
@@ -48,7 +48,11 @@ Of course, if you prefer not to trust pre-built binaries, that's fine; just pull
 14. Make sure to test your scheduled task to make sure it works. If it does, great! If it doesn't... well, walk back through this process and see if you can find what went wrong.
 15. If you need to edit your list of domains or update your API key, simply run the EXE again without the "-run" argument to bring back up the GUI. Make your changes and they will be immediately saved. When the scheduled task runs again, it will use the new settings.
 
-## History
+## Version History
+* v1.0: Initial release
+* v1.1: Fixes for Linode API changes
+
+## Project History
 
 In the past, I used a "professional" dynamic DNS service which I paid a signficant amount for every year. Once I learned about the Linode API and its ability to trivially act in the same capacity, I quickly abandoned the paid service, especially since I could get the same functionality for "free" with the service I was already getting from Linode.
 
