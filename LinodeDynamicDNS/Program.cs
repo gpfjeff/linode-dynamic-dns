@@ -27,7 +27,7 @@
  * success status will also be logged in the registry and can be displayed by running the program
  * in "setup" mode.
  * 
- * This program is Copyright 2016, Jeffrey T. Darlington.
+ * This program is Copyright 2017, Jeffrey T. Darlington.
  * E-mail:  jeff@gpf-comics.com
  * Web:     https://github.com/gpfjeff/linode-dynamic-dns
  * 
@@ -67,7 +67,7 @@ namespace com.gpfcomics.LinodeDynamicDNS
         /// The expected result from the Linode API for a successful update.  The "{0}" token should be replaced with the
         /// resource ID of the domain being updated.
         /// </summary>
-        private static string EXPECTED_RESPONSE = "{\"ERRORARRAY\":[],\"DATA\":{\"ResourceID\":{0}},\"ACTION\":\"domain.resource.update\"}";
+        private static string EXPECTED_RESPONSE = "{\"ACTION\":\"domain.resource.update\",\"DATA\":{\"ResourceID\":{0}},\"ERRORARRAY\":[]}";
 
         /// <summary>
         /// The main entry point for the application.
