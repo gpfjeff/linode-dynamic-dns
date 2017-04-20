@@ -5,12 +5,12 @@ The Linode Dynamic DNS Updater is free software and is released under the [GNU G
 
 ## Downloadable Binaries
 
-Download version 1.1 of the Linode Dynamic DNS Updater:
-* [LinodeDynamicDNS.zip](https://github.com/gpfjeff/linode-dynamic-dns/releases/download/v1.1/LinodeDynamicDNS.zip) (11.2k)
-* [GnuPG Signature](https://github.com/gpfjeff/linode-dynamic-dns/releases/download/v1.1/LinodeDynamicDNS.zip.sig) / [Signing Key](https://www.gpf-comics.com/gnupg.php)
-* SHA-1: 7b2ff941e37c9cb4eb989edf1db1467e60a87e02
-* SHA-256: bdc1f85c700e3a6b393fcc32d30c0f6d66da2290bada107d894a0b4c3c92f96c
-* SHA-512: fa7427eeec14a74369431553075005d9ae87da2cf97e2e9b4e30c22ab49b603be0298acd445dcdafe0f80b7402a90523409695707b1ccf2301843a10a1a3fb68
+Download version 1.1.1 of the Linode Dynamic DNS Updater:
+* [LinodeDynamicDNS.zip](https://github.com/gpfjeff/linode-dynamic-dns/releases/download/v1.1.1/LinodeDynamicDNS.zip) (11.2k)
+* [GnuPG Signature](https://github.com/gpfjeff/linode-dynamic-dns/releases/download/v1.1.1/LinodeDynamicDNS.zip.sig) / [Signing Key](https://www.gpf-comics.com/gnupg.php)
+* SHA-1: 61d8fd9aa44dd09368339b420ce9b2c21e727e0e
+* SHA-256: ff45f316fe6f4c9fa9c95c967117712fd9fe9a2c5981b6e99cd34847090df27e
+* SHA-512: cbd4dce8da26b8d74675b9b28e784d4db781a232fd8f3514c344fafc11ef9ddd0ba8f2cfc27ba178129942b7a100edb0c469369b0ee9efb75a5431cd4d293931
 
 Of course, if you prefer not to trust pre-built binaries, that's fine; just pull down the source and build it yourself. The Linode Dynamic DNS Updater was built using Microsoft Visual Studio 2012.
 
@@ -51,6 +51,7 @@ Of course, if you prefer not to trust pre-built binaries, that's fine; just pull
 ## Version History
 * v1.0: Initial release
 * v1.1: Fixes for Linode API changes
+* v1.1.1: Fix for fix to Linode API changes (forgot to update a file)
 
 ## Project History
 
